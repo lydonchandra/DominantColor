@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		2F3D09861A4C212A001ED0BF /* Memoization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3D09851A4C212A001ED0BF /* Memoization.swift */; };
 		2F3D09871A4C212A001ED0BF /* Memoization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3D09851A4C212A001ED0BF /* Memoization.swift */; };
+		3F46B8EB1BB7AB3500DD1B4B /* DominantColorUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F46B8EA1BB7AB3500DD1B4B /* DominantColorUnitTests.swift */; };
+		3FD0812B1BC1760300F5D7EB /* yellowBlackImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FD0812A1BC1760300F5D7EB /* yellowBlackImage.png */; };
+		3FDFA2BD1BBDACE90040CBD8 /* ones010.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FDFA2BC1BBDACE90040CBD8 /* ones010.png */; };
+		3FDFA2BF1BC03B4B0040CBD8 /* ones010.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 3FDFA2BE1BC03B4B0040CBD8 /* ones010.bmp */; };
+		3FDFA2C11BC03E680040CBD8 /* ones32x32.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 3FDFA2C01BC03E680040CBD8 /* ones32x32.bmp */; };
+		3FDFA2C31BC0417A0040CBD8 /* all255s32x32.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 3FDFA2C21BC0417A0040CBD8 /* all255s32x32.bmp */; };
+		3FDFA2C51BC08C9B0040CBD8 /* yellowImage_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FDFA2C41BC08C9B0040CBD8 /* yellowImage_transparent.png */; };
 		723DE5291A4934E200C357E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723DE5261A4934E200C357E3 /* AppDelegate.swift */; };
 		723DE52A1A4934E200C357E3 /* DragAndDropImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723DE5271A4934E200C357E3 /* DragAndDropImageView.swift */; };
 		723DE52B1A4934E200C357E3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 723DE5281A4934E200C357E3 /* Images.xcassets */; };
@@ -47,6 +54,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		3F46B8E51BB78A4000DD1B4B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 72D797B01A43F44D00D32E7C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 898845D11A490CE000003EF2;
+			remoteInfo = ExampleiOS;
+		};
 		723DE54B1A49353C00C357E3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 72D797B01A43F44D00D32E7C /* Project object */;
@@ -90,6 +104,15 @@
 
 /* Begin PBXFileReference section */
 		2F3D09851A4C212A001ED0BF /* Memoization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Memoization.swift; sourceTree = "<group>"; };
+		3F46B8E01BB78A4000DD1B4B /* DominantColorUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DominantColorUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F46B8E41BB78A4000DD1B4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F46B8EA1BB7AB3500DD1B4B /* DominantColorUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DominantColorUnitTests.swift; sourceTree = "<group>"; };
+		3FD0812A1BC1760300F5D7EB /* yellowBlackImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellowBlackImage.png; sourceTree = "<group>"; };
+		3FDFA2BC1BBDACE90040CBD8 /* ones010.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ones010.png; sourceTree = "<group>"; };
+		3FDFA2BE1BC03B4B0040CBD8 /* ones010.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = ones010.bmp; sourceTree = "<group>"; };
+		3FDFA2C01BC03E680040CBD8 /* ones32x32.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = ones32x32.bmp; sourceTree = "<group>"; };
+		3FDFA2C21BC0417A0040CBD8 /* all255s32x32.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = all255s32x32.bmp; sourceTree = "<group>"; };
+		3FDFA2C41BC08C9B0040CBD8 /* yellowImage_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellowImage_transparent.png; sourceTree = "<group>"; };
 		723DE5141A49348D00C357E3 /* ColorDifference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorDifference.swift; sourceTree = "<group>"; };
 		723DE5151A49348D00C357E3 /* ColorSpaceConversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorSpaceConversion.h; sourceTree = "<group>"; };
 		723DE5161A49348D00C357E3 /* ColorSpaceConversion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorSpaceConversion.m; sourceTree = "<group>"; };
@@ -123,6 +146,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3F46B8DD1BB78A4000DD1B4B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		723DE5321A49353C00C357E3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -158,6 +188,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F46B8E11BB78A4000DD1B4B /* DominantColorUnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				3FD0812A1BC1760300F5D7EB /* yellowBlackImage.png */,
+				3FDFA2C21BC0417A0040CBD8 /* all255s32x32.bmp */,
+				3FDFA2C41BC08C9B0040CBD8 /* yellowImage_transparent.png */,
+				3FDFA2C01BC03E680040CBD8 /* ones32x32.bmp */,
+				3FDFA2BE1BC03B4B0040CBD8 /* ones010.bmp */,
+				3FDFA2BC1BBDACE90040CBD8 /* ones010.png */,
+				3F46B8E41BB78A4000DD1B4B /* Info.plist */,
+				3F46B8EA1BB7AB3500DD1B4B /* DominantColorUnitTests.swift */,
+			);
+			path = DominantColorUnitTests;
+			sourceTree = "<group>";
+		};
 		723DE5131A49348D00C357E3 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +248,7 @@
 				723DE5131A49348D00C357E3 /* Shared */,
 				72D797BA1A43F44D00D32E7C /* Mac */,
 				898845D31A490CE000003EF2 /* iOS */,
+				3F46B8E11BB78A4000DD1B4B /* DominantColorUnitTests */,
 				72B92ADA1A44CCCD00A2C24C /* Frameworks */,
 				72D797B91A43F44D00D32E7C /* Products */,
 			);
@@ -215,6 +261,7 @@
 				898845D21A490CE000003EF2 /* ExampleiOS.app */,
 				723DE5361A49353C00C357E3 /* DominantColor.framework */,
 				723DE59F1A4938DD00C357E3 /* DominantColor.framework */,
+				3F46B8E01BB78A4000DD1B4B /* DominantColorUnitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -290,6 +337,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		3F46B8DF1BB78A4000DD1B4B /* DominantColorUnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3F46B8E91BB78A4000DD1B4B /* Build configuration list for PBXNativeTarget "DominantColorUnitTests" */;
+			buildPhases = (
+				3F46B8DC1BB78A4000DD1B4B /* Sources */,
+				3F46B8DD1BB78A4000DD1B4B /* Frameworks */,
+				3F46B8DE1BB78A4000DD1B4B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3F46B8E61BB78A4000DD1B4B /* PBXTargetDependency */,
+			);
+			name = DominantColorUnitTests;
+			productName = DominantColorUnitTests;
+			productReference = 3F46B8E01BB78A4000DD1B4B /* DominantColorUnitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		723DE5351A49353C00C357E3 /* DominantColor-Mac */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 723DE54F1A49353C00C357E3 /* Build configuration list for PBXNativeTarget "DominantColor-Mac" */;
@@ -371,10 +436,14 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftMigration = 0700;
-				LastSwiftUpdateCheck = 0700;
+				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Indragie Karunaratne";
 				TargetAttributes = {
+					3F46B8DF1BB78A4000DD1B4B = {
+						CreatedOnToolsVersion = 7.1;
+						TestTargetID = 898845D11A490CE000003EF2;
+					};
 					723DE5351A49353C00C357E3 = {
 						CreatedOnToolsVersion = 6.1.1;
 					};
@@ -406,11 +475,25 @@
 				898845D11A490CE000003EF2 /* ExampleiOS */,
 				723DE5351A49353C00C357E3 /* DominantColor-Mac */,
 				723DE59E1A4938DD00C357E3 /* DominantColor-iOS */,
+				3F46B8DF1BB78A4000DD1B4B /* DominantColorUnitTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3F46B8DE1BB78A4000DD1B4B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3FDFA2BF1BC03B4B0040CBD8 /* ones010.bmp in Resources */,
+				3FDFA2C11BC03E680040CBD8 /* ones32x32.bmp in Resources */,
+				3FDFA2C51BC08C9B0040CBD8 /* yellowImage_transparent.png in Resources */,
+				3FDFA2BD1BBDACE90040CBD8 /* ones010.png in Resources */,
+				3FDFA2C31BC0417A0040CBD8 /* all255s32x32.bmp in Resources */,
+				3FD0812B1BC1760300F5D7EB /* yellowBlackImage.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		723DE5341A49353C00C357E3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -447,6 +530,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3F46B8DC1BB78A4000DD1B4B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F46B8EB1BB7AB3500DD1B4B /* DominantColorUnitTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		723DE5311A49353C00C357E3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -498,6 +589,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3F46B8E61BB78A4000DD1B4B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 898845D11A490CE000003EF2 /* ExampleiOS */;
+			targetProxy = 3F46B8E51BB78A4000DD1B4B /* PBXContainerItemProxy */;
+		};
 		723DE54C1A49353C00C357E3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 723DE5351A49353C00C357E3 /* DominantColor-Mac */;
@@ -538,6 +634,44 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		3F46B8E71BB78A4000DD1B4B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = DominantColorUnitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = dendeng.DominantColorUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ExampleiOS.app/ExampleiOS";
+			};
+			name = Debug;
+		};
+		3F46B8E81BB78A4000DD1B4B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = DominantColorUnitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = dendeng.DominantColorUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ExampleiOS.app/ExampleiOS";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		723DE5501A49353C00C357E3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -792,6 +926,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3F46B8E91BB78A4000DD1B4B /* Build configuration list for PBXNativeTarget "DominantColorUnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F46B8E71BB78A4000DD1B4B /* Debug */,
+				3F46B8E81BB78A4000DD1B4B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		723DE54F1A49353C00C357E3 /* Build configuration list for PBXNativeTarget "DominantColor-Mac" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

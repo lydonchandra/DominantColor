@@ -57,10 +57,29 @@ private func enumerateRGBAContext(context: CGContext, handler: (Int, Int, RGBAPi
     }
 }
 
+
+private func enumerateRGBAContextDon(context:CGContext, handler: (Int, Int, RGBAPixel) -> Void) {
+    let (width, height) = (CGBitmapContextGetWidth(context), CGBitmapContextGetHeight(context))
+    let data = unsafeBitCast(CGBitmapContextGetData(context), UnsafeMutablePointer<RGBAPixel>.self)
+    for y in 0..<height {
+        for x in 0..<width {
+            let currentPixelIdx = Int(x + (y * width))
+            handler(x, y, data[currentPixelIdx])
+        }
+    }
+}
 // MARK: Conversions
 
-private func RGBVectorToCGColor(rgbVector: INVector3) -> CGColor {
+public func RGBVectorToCGColor(rgbVector: INVector3) -> CGColor {
     return CGColorCreate(CGColorSpaceCreateDeviceRGB(), [CGFloat(rgbVector.x), CGFloat(rgbVector.y), CGFloat(rgbVector.z), 1.0])!
+}
+
+private func RGBVectorToCGColorDon(rgbVector: INVector3) -> CGColor {
+    return CGColorCreate(
+        CGColorSpaceCreateDeviceRGB(),
+        [CGFloat(rgbVector.x),
+            CGFloat(rgbVector.y),
+            CGFloat(rgbVector.z), 1.0])!
 }
 
 private extension RGBAPixel {
@@ -86,8 +105,15 @@ public enum GroupingAccuracy {
 }
 
 struct DefaultParameterValues {
-    static var maxSampledPixels: Int = 1000
+    static var maxSampledPixels: Int = 10000
     static var accuracy: GroupingAccuracy = .Medium
+    static var seed: UInt32 = 3571
+    static var memoizeConversions: Bool = false
+}
+
+struct DefaultParameterValuesDon {
+    static var maxSampledPixels: Int = 1000
+    static var accuracy: GroupingAccuracy =  .Medium
     static var seed: UInt32 = 3571
     static var memoizeConversions: Bool = false
 }
@@ -116,14 +142,16 @@ Computes the dominant colors in an image
 */
 public func dominantColorsInImage(
         image: CGImage,
-        maxSampledPixels: Int = DefaultParameterValues.maxSampledPixels,
-        accuracy: GroupingAccuracy = DefaultParameterValues.accuracy,
-        seed: UInt32 = DefaultParameterValues.seed,
+        maxSampledPixels: Int = DefaultParameterValues.maxSampledPixels,    //1000
+        accuracy: GroupingAccuracy = DefaultParameterValues.accuracy,   //Medium
+        seed: UInt32 = DefaultParameterValues.seed, //3571
         memoizeConversions: Bool = DefaultParameterValues.memoizeConversions
     ) -> [CGColor] {
     
     let (width, height) = (CGImageGetWidth(image), CGImageGetHeight(image))
+    NSLog("image width, height = %d,%d", width, height)
     let (scaledWidth, scaledHeight) = scaledDimensionsForPixelLimit(maxSampledPixels, width: width, height: height)
+    NSLog("image scaled width, height = %d, %d",scaledWidth, scaledHeight)
     
     // Downsample the image if necessary, so that the total number of
     // pixels sampled does not exceed the specified maximum.
@@ -141,9 +169,9 @@ public func dominantColorsInImage(
         return memoizeConversions ? memoize(f) : f
     }()
     enumerateRGBAContext(context) { (_, _, pixel) in
-        if pixel.a == UInt8.max {
+        //if pixel.a == UInt8.max {
             labValues.append(RGBToLAB(pixel))
-        }
+        //}
     }
     // Cluster the colors using the k-means algorithm
     let k = selectKForElements(labValues)
@@ -154,6 +182,56 @@ public func dominantColorsInImage(
     clusters.sortInPlace { $0.size > $1.size }
     
     return clusters.map { RGBVectorToCGColor(IN_LABToRGB($0.centroid)) }
+}
+
+
+public func dominantColorsInImageDon (
+    image: CGImage,
+    maxSampledPixels: Int = DefaultParameterValues.maxSampledPixels,
+    accuracy: GroupingAccuracy = DefaultParameterValues.accuracy,
+    seed: UInt32 = DefaultParameterValues.seed,
+    memoizeConversions: Bool = DefaultParameterValues.memoizeConversions
+    ) -> [CGColor] {
+
+        let (width, height) = (CGImageGetWidth(image), CGImageGetHeight(image));
+        let (scaledWidth, scaledHeight) = scaledDimensionsForPixelLimit(maxSampledPixels, width: width, height: height)
+        
+        //downsample image if necessary, so total number of pixels sampled does not exceed
+        //specified maximum
+        let context = createRGBAContext(scaledWidth, height: scaledHeight)
+        CGContextDrawImage(
+            context
+            ,CGRect(
+                x: 0,
+                y: 0,
+                width: Int(scaledWidth),
+                height: Int(scaledHeight))
+            , image)
+        
+        //get RGB colors from bitmap context,ignoring any pixels that have alpha transparency
+        //also convert the colors to LAB color space
+        var labValues = [INVector3]()
+        labValues.reserveCapacity( Int(scaledWidth * scaledHeight) )
+        
+        let RGBToLAB: RGBAPixel -> INVector3 = {
+            let f: RGBAPixel -> INVector3 = { IN_RGBToLAB( $0.toRGBVector()) }
+            return memoizeConversions ? memoize(f) : f
+        }()
+        
+        enumerateRGBAContext(context) { (_, _, pixel) -> Void in
+            if pixel.a == UInt8.max {
+                labValues.append(RGBToLAB(pixel))
+            }
+        }
+        
+        //cluster colors using k-means algorithm
+        let k = selectKForElements(labValues)
+        var clusters = kmeans(labValues, k: k, seed: seed, distance: distanceForAccuracy(accuracy))
+        
+        //sort clusters by size in descending order so that most dominant colors come first
+        clusters.sortInPlace { $0.size < $1.size }
+
+        return clusters.map { RGBVectorToCGColor(IN_LABToRGB($0.centroid)) }
 }
 
 private func distanceForAccuracy(accuracy: GroupingAccuracy) -> (INVector3, INVector3) -> Float {

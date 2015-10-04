@@ -1,4 +1,4 @@
-//
+	//
 //  KMeans.swift
 //  DominantColor
 //
@@ -16,6 +16,16 @@ protocol ClusteredType {
     func /(lhs: Self, rhs: Int) -> Self
     
     // Identity value such that x + identity = x. Typically the 0 vector.
+    static var identity: Self { get }
+}
+
+//Represents type that can be clustered using k-means clustering algorithm
+protocol ClusteredTypeDon {
+    //used to compute average values to determine cluster centroids
+    func +(lhs: Self, rhs: Self) -> Self
+    func /(lhs: Self, rhs: Int) -> Self
+    
+    //identify value such that x + identity = x, typically 0 vector
     static var identity: Self { get }
 }
 
@@ -39,6 +49,7 @@ func kmeans<T : ClusteredType>(
     assert(k <= n, "k cannot be larger than the total number of points")
 
     var centroids = points.randomValues(seed, num: k)
+    print(centroids)
     var memberships = [Int](count: n, repeatedValue: -1)
     var clusterSizes = [Int](count: k, repeatedValue: 0)
     
@@ -79,7 +90,29 @@ func kmeans<T : ClusteredType>(
     return clusters
 }
 
-private func findNearestCluster<T : ClusteredType>(point: T, centroids: [T], k: Int, distance: (T, T) -> Float) -> Int {
+func findNearestCluster<T : ClusteredType>(point: T, centroids: [T], k: Int, distance: (T, T) -> Float) -> Int {
+    var minDistance = Float.infinity
+    var clusterIndex = 0
+    for i in 0..<k {
+        let distance = distance(point, centroids[i])
+        if distance < minDistance {
+            minDistance = distance
+            clusterIndex = i
+        }
+    }
+    return clusterIndex
+}
+
+func testFunc() {
+
+}
+
+func findNearestClusterDon<T: ClusteredType>(
+    point: T,
+    centroids: [T],
+    k: Int,
+    distance: (T,T) -> Float) -> Int
+{
     var minDistance = Float.infinity
     var clusterIndex = 0
     for i in 0..<k {
