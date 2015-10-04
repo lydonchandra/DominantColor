@@ -118,49 +118,7 @@ class DominantColorUnitTests: XCTestCase {
     }
     
     
-//    // 1.
-//    CGImageRef inputCGImage = [image CGImage];
-//    NSUInteger width = CGImageGetWidth(inputCGImage);
-//    NSUInteger height = CGImageGetHeight(inputCGImage);
-//    
-//    // 2.
-//    NSUInteger bytesPerPixel = 4;
-//    NSUInteger bytesPerRow = bytesPerPixel * width;
-//    NSUInteger bitsPerComponent = 8;
-//    
-//    UInt32 * pixels;
-//    pixels = (UInt32 *) calloc(height * width, sizeof(UInt32));
-//    
-//    // 3.
-//    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-//    CGContextRef context = CGBitmapContextCreate(pixels, width, height, bitsPerComponent, bytesPerRow, colorSpace, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
-//    
-//    // 4.
-//    CGContextDrawImage(context, CGRectMake(0, 0, width, height), inputCGImage);
-//    
-//    // 5. Cleanup
-//    CGColorSpaceRelease(colorSpace);
-//    CGContextRelease(context);
 
-//    // 1.
-//    #define Mask8(x) ( (x) & 0xFF )
-//    #define R(x) ( Mask8(x) )
-//    #define G(x) ( Mask8(x >> 8 ) )
-//    #define B(x) ( Mask8(x >> 16) )
-//    
-//    NSLog(@"Brightness of image:");
-//    // 2.
-//    UInt32 * currentPixel = pixels;
-//    for (NSUInteger j = 0; j < height; j++) {
-//    for (NSUInteger i = 0; i < width; i++) {
-//    // 3.
-//    UInt32 color = *currentPixel;
-//    printf("%3.0f ", (R(color)+G(color)+B(color))/3.0);
-//    // 4.
-//    currentPixel++;
-//    }
-//    printf("\n");
-//    }
     
     func testDominantColorsInImage() {
         let bundle = NSBundle(forClass: self.dynamicType)
@@ -242,9 +200,6 @@ class DominantColorUnitTests: XCTestCase {
     
     
     func testFindNearestCluster() {
-//        NSString* imagePath = [[[NSBundle bundleForClass:[self class]] resourcePath] stringByAppendingPathComponent:@"plane.png"];
-//        UIImage* imageWorks = [UIImage imageWithContentsOfFile:imagePath];
-        
         let testBundle = NSBundle(forClass: self.dynamicType)
         let fileURL = testBundle.URLForResource("all255s32x32", withExtension: "bmp")
         
@@ -288,7 +243,7 @@ class DominantColorUnitTests: XCTestCase {
                 let red = dataIntPointer[currentIdx+1]
                 let green = dataIntPointer[currentIdx+2]
                 let blue = dataIntPointer[currentIdx+3]
-//                let color =
+
 //                let color = UIColor(
 //                    red: CGFloat(red)/CGFloat(255.0)
 //                    , green: CGFloat(green)/CGFloat(255.0)
@@ -299,11 +254,6 @@ class DominantColorUnitTests: XCTestCase {
             }
             print("\n")
         }
-//        let width = CGImageGetWidth(inputCGImage)
-//        let height = CGImageGetHeight(inputCGImage)
-//        let bytesPerPixel = 4
-//        let bytesPerRow = bytesPerPixel * width
-//        let bitsPerComponent = 8
         
         var points = [Float](count: 10, repeatedValue: 0)
         let k = 16
@@ -379,18 +329,6 @@ class DominantColorUnitTests: XCTestCase {
 //        alpha);
     }
     
-//    UIColor *color = [UIColor orangeColor];
-//    CGFloat red = 0.0, green = 0.0, blue = 0.0, alpha = 0.0;
-//    
-//    if ([color respondsToSelector:@selector(getRed:green:blue:alpha:)]) {
-//    [color getRed:&red green:&green blue:&blue alpha:&alpha];
-//    } else {
-//    const CGFloat *components = CGColorGetComponents(color.CGColor);
-//    red = components[0];
-//    green = components[1];
-//    blue = components[2];
-//    alpha = components[3];
-//    }
 
 //    func testPerformanceExample() {
 //        // This is an example of a performance test case.
@@ -399,143 +337,6 @@ class DominantColorUnitTests: XCTestCase {
 //        }
 //    }
 
-    
-    
-    
-//    
-//    func createARGBBitmapContext(inImage: CGImage) -> CGContext {
-//        var bitmapByteCount = 0
-//        var bitmapBytesPerRow = 0
-//        
-//        //Get image width, height
-//        let pixelsWide = CGImageGetWidth(inImage)
-//        let pixelsHigh = CGImageGetHeight(inImage)
-//        
-//        // Declare the number of bytes per row. Each pixel in the bitmap in this
-//        // example is represented by 4 bytes; 8 bits each of red, green, blue, and
-//        // alpha.
-//        bitmapBytesPerRow = Int(pixelsWide) * 4
-//        bitmapByteCount = bitmapBytesPerRow * Int(pixelsHigh)
-//        
-//        // Use the generic RGB color space.
-//        let colorSpace = CGColorSpaceCreateDeviceRGB()
-//        
-//        // Allocate memory for image data. This is the destination in memory
-//        // where any drawing to the bitmap context will be rendered.
-//        let bitmapData = malloc(CUnsignedLong(bitmapByteCount))
-//        let bitmapInfo = CGBitmapInfo.fromRaw(CGImageAlphaInfo.PremultipliedFirst.toRaw())!
-//        
-//        // Create the bitmap context. We want pre-multiplied ARGB, 8-bits
-//        // per component. Regardless of what the source image format is
-//        // (CMYK, Grayscale, and so on) it will be converted over to the format
-//        // specified here by CGBitmapContextCreate.
-//        let context = CGBitmapContextCreate(bitmapData, pixelsWide, pixelsHigh, CUnsignedLong(8), CUnsignedLong(bitmapBytesPerRow), colorSpace, bitmapInfo)
-//        
-//        // Make sure and release colorspace before returning
-//        CGColorSpaceRelease(colorSpace)
-//        
-//        return context
-//    }
-//    
-//    func getPixelColorAtLocation(point:CGPoint, inImage:CGImageRef) -> UIColor {
-//        // Create off screen bitmap context to draw the image into. Format ARGB is 4 bytes for each pixel: Alpa, Red, Green, Blue
-//        let context = self.createARGBBitmapContext(inImage)
-//        
-//        let pixelsWide = CGImageGetWidth(inImage)
-//        let pixelsHigh = CGImageGetHeight(inImage)
-//        let rect = CGRect(x:0, y:0, width:Int(pixelsWide), height:Int(pixelsHigh))
-//        
-//        //Clear the context
-//        CGContextClearRect(context, rect)
-//        
-//        // Draw the image to the bitmap context. Once we draw, the memory
-//        // allocated for the context for rendering will then contain the
-//        // raw image data in the specified color space.
-//        CGContextDrawImage(context, rect, inImage)
-//        
-//        // Now we can get a pointer to the image data associated with the bitmap
-//        // context.
-//        let data:COpaquePointer = CGBitmapContextGetData(context)
-//        let dataType = UnsafePointer<UInt8>(data)
-//        
-//        let offset = 4*((Int(pixelsWide) * Int(point.y)) + Int(point.x))
-//        let alpha = dataType[offset]
-//        let red = dataType[offset+1]
-//        let green = dataType[offset+2]
-//        let blue = dataType[offset+3]
-//        let color = UIColor(red: Float(red)/255.0, green: Float(green)/255.0, blue: Float(blue)/255.0, alpha: Float(alpha)/255.0)
-//        
-//        // When finished, release the context
-//        CGContextRelease(context);
-//        // Free image data memory for the context
-//        free(data)
-//        return color;
-//    }
-    
-    
-    
-    
-    
-//    func createARGBBitmapContext(inImage: CGImage) -> CGContext	 {
-//        var bitmapBytesCount = 0
-//        var bitmapBytesPerRow = 0
-//        
-//        let pixelsWide = CGImageGetWidth(inImage)
-//        let pixelsHigh = CGImageGetHeight(inImage)
-//        
-//        bitmapBytesPerRow = Int(pixelsWide) * 4
-//        bitmapByteCount = bitmapBytesPerRow * Int(pixelsHigh)
-//        
-//        let colorSpace = CGColorSpaceCreateDeviceRGB()
-//        
-//        let bitmapData = malloc(CUnsignedLong(bitmapBytesCount))
-//        let bitmapInfo = CGBitmapInfo.frowRaw(CGImageAlphaInfo.PremultipliedFirst.toRaw())!
-//        
-//        
-//        let context = CGBitmapContextCreate(
-//            bitmapData,
-//            pixelsWide, pixelsHigh,
-//            CUnsignedLong(8), CUnsignedLong(bitmapBtesPerRow),
-//            colorSpace,
-//            bitmapInfo)
-//        
-//        CGColorSpaceRelease(colorSpace)
-//        
-//        return context
-//    }
-//    
-//    
-//    
-//    func getPixelColorAtLocation(point: CGPoint, inImage:CGImageRef) -> UIColor {
-//    
-//        let context = createARGBBitmapContext(inImage)
-//        let pixelsWide = CGImageGetWidth(inImage)
-//        let pixelsHigh = CGImageGetHeight(inImage)
-//        let rect = CGRect(x: 0, y: 0, width: Int(pixelsWide), height: Int(pixelsHigh))
-//        
-//        CGContextClearRect(context, rect)
-//        
-//        CGContextDrawImage(context, rect, inImage)
-//        
-//        let data:COpaquePointer = CGBitmapContextGetData(context)
-//        let dataType = UnsafePointer<UInt8>(data)
-//        
-//        let offset = 4 * ( (Int(pixelsWide) * Int(point.y))  + Int(point.x))
-//        let alpha = dataType[offset]
-//        let red = dataType[offset+1]
-//        let green = dataType[offset+2]
-//        let blue = dataType[offset+3]
-//        let color = UIColor(
-//            red: Float(red)/255.0,
-//            green: Float(green)/255.0,
-//            blue: Float(blue)/255.0,
-//            alpha: Float(alpha)/255.0)
-//        
-//        CGContextRelease(context)
-//        free(data)
-//        return color
-//    }
-    
     
     
     
